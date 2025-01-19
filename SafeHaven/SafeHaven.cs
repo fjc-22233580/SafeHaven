@@ -3,13 +3,13 @@ namespace SafeHaven
     /// <summary>
     /// A class that represents the SafeHaven application.
     /// </summary>
-    public class SafeHaven
+    public class Safehaven
     {
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SafeHaven"/> class.
+        /// Initializes a new instance of the <see cref="Safehaven"/> class.
         /// </summary>
-        public SafeHaven()
+        public Safehaven()
         {
 
         }

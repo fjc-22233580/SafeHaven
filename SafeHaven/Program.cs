@@ -13,7 +13,7 @@ namespace SafeHaven
         /// <param name="args">An array of command-line arguments.</param>
         static void Main(string[] args)
         {
-            SafeHaven safeHaven = new SafeHaven();
+            Safehaven safeHaven = new Safehaven();
 
             Console.WriteLine(safeHaven.Title);
             Console.ReadLine();
