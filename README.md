@@ -1,1 +1,1 @@
-SafeHaven - a uni assignment for a home automation syste.
+SafeHaven - a uni assignment for a home automation system.
