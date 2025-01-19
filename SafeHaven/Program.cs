@@ -1,10 +1,22 @@
 ﻿using System;
 
-namespace SafeHaven{
-    class Program{
-        static void Main(string[] args){
-           Console.WriteLine("Hello World!");
-           Console.ReadLine();
+namespace SafeHaven
+{
+    /// <summary>
+    /// The main class and entry point of the application.
+    /// </summary>
+    class Program
+    {
+        /// <summary>
+        /// The entry point of the application.
+        /// </summary>
+        /// <param name="args">An array of command-line arguments.</param>
+        static void Main(string[] args)
+        {
+            SafeHaven safeHaven = new SafeHaven();
+
+            Console.WriteLine(safeHaven.Title);
+            Console.ReadLine();
         }
     }
 }
