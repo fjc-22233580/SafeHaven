@@ -1,4 +1,4 @@
-namespace SafeHaven.Devices
+namespace SafeHaven.Model.Devices
 {
     /// <summary>
     /// Enum for the type of device

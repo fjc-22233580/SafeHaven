@@ -1,7 +1,7 @@
 using System;
-using SafeHaven.Interfaces;
+using SafeHaven.Model.Interfaces;
 
-namespace SafeHaven.Devices
+namespace SafeHaven.Model.Devices
 {
     /// <summary>
     /// Represents a fire detector device.
