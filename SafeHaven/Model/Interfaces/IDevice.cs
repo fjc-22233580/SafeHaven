@@ -1,7 +1,7 @@
 using System;
-using SafeHaven.Devices;
+using SafeHaven.Model.Devices;
 
-namespace SafeHaven.Interfaces
+namespace SafeHaven.Model.Interfaces
 {
     /// <summary>
     /// Represents a device.

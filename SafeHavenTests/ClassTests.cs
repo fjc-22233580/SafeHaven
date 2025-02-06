@@ -1,6 +1,7 @@
 ﻿using SafeHaven;
-using SafeHaven.Devices;
-using SafeHaven.Interfaces;
+using SafeHaven.Model.Devices;
+using SafeHaven.Model.Interfaces;
+
 namespace SafeHavenTests;
 
 [TestClass]
