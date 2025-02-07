@@ -65,6 +65,11 @@ namespace SafeHaven.Model.Devices
         /// </summary>
         public DeviceStatus DeviceStatus { get; }
 
+        /// <summary>
+        /// Occurs when the device is triggered.
+        /// </summary>
+        public event EventHandler DeviceTriggered;
+
         #endregion
     }
 }
