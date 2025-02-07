@@ -6,8 +6,16 @@ namespace SafeHaven.View;
 
 public class ConsoleUI
 {
+
+    /// <summary>
+    /// The title of the application.
+    /// </summary>
+    private const string Title = "SafeHaven - Protecting Your Home and Family";
+
     public void PrintMenu(List<MenuItem> menuItems)
     {
+        DisplayTitle();
+
         foreach (var menuItem in menuItems)
         {
             Console.WriteLine(menuItem.Text);
@@ -28,10 +36,14 @@ public class ConsoleUI
         }
     }
 
-
     public void DisplayMessage(string message)
     {
         Console.WriteLine(message);
+    }
+
+    private void DisplayTitle()
+    {
+        DisplayMessage(Title);
     }
 
     public string GetInput()

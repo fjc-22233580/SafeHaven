@@ -7,16 +7,19 @@ namespace SafeHaven.Controller;
 
 public class ViewController
 {
+
+    #region Fields
+
     private readonly SafeHavenModel model;
 
     private readonly ConsoleUI consoleUI = new ConsoleUI();
 
+    #endregion
     public ViewController(SafeHavenModel model)
     {
         this.model = model;
 
         SubscribeToDeviceEvents();
-
         CreateMainMenu();
     }
 
@@ -37,18 +40,17 @@ public class ViewController
 
     private void AddDevice()
     {
-        // TODOL:   Implement this method
+        // TODO:   Implement this method
     }
 
     private void RemoveDevice()
     {
-        // TODOL:   Implement this method
-
+        // TODO:   Implement this method
     }
 
     private void DisplayDevices()
     {
-        // TODOL:   Implement this method
+       // TODO: Implement this method
     }
 
     private void Exit()
@@ -57,7 +59,7 @@ public class ViewController
     }
 
     private void SubscribeToDeviceEvents()
-    {  
+    {
         foreach (var device in model.Devices)
         {
             device.DeviceStateChanged += Device_DeviceStateChanged;

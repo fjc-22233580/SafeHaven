@@ -14,9 +14,6 @@ namespace SafeHaven
         static void Main(string[] args)
         {
             Safehaven safeHaven = new Safehaven();
-
-            Console.WriteLine(safeHaven.Title);
-            Console.ReadLine();
         }
     }
 }

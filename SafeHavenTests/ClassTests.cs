@@ -8,23 +8,6 @@ namespace SafeHavenTests;
 public sealed class ClassTests
 {
     /// <summary>
-    /// Test the creation of the SafeHaven class
-    /// </summary>
-    [TestMethod]
-    public void CreateSafeHavenClassTest()
-    {
-        // Arrange
-        string expectedTitle = "SafeHaven";
-
-        // Act
-        Safehaven safehaven = new Safehaven();
-        string title = safehaven.Title;
-
-        // Assert
-        Assert.AreEqual(expectedTitle, title);
-    }
-
-    /// <summary>
     /// Test the creation of the the IDevice factory
     /// </summary>
     [TestMethod]

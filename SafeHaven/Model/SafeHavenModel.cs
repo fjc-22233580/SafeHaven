@@ -13,6 +13,9 @@ namespace SafeHaven.Model
 
         public SafeHavenModel()
         {
+            // Add some default devices
+            AddDevice("Kitchen Fire Detector", DeviceType.FireDetector, DeviceStatus.Connected);
+            AddDevice("Upstairs Fire Detector", DeviceType.FireDetector, DeviceStatus.Connected);
 
         }
 
