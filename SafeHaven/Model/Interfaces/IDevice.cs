@@ -11,7 +11,7 @@ namespace SafeHaven.Model.Interfaces
         /// <summary>
         /// Occurs when the device is triggered.
         /// </summary>
-        event EventHandler DeviceTriggered ;
+        event EventHandler DeviceStateChanged ;
 
         /// <summary>
         /// Gets the unique identifier of the device.
