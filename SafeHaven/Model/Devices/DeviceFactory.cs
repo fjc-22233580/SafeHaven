@@ -13,17 +13,16 @@ namespace SafeHaven.Model.Devices
         /// </summary>
         /// <param name="friendlyName">The friendly name of the device.</param>
         /// <param name="deviceType">The type of the device.</param>
-        /// <param name="deviceStatus">The status of the device.</param>
         /// <returns>An instance of a device that implements the <see cref="IDevice"/> interface.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the device type is not recognized.</exception>
-        public static IDevice CreateDevice(string friendlyName, DeviceType deviceType, DeviceStatus deviceStatus)
+        public static IDevice CreateDevice(string friendlyName, DeviceType deviceType)
         {                    
            IDevice device = null;
 
            switch (deviceType)
             {
                 case DeviceType.FireDetector:
-                    device = new FireDetector(Guid.NewGuid(), friendlyName, deviceType, deviceStatus);
+                    device = new FireDetector(Guid.NewGuid(), friendlyName, deviceType, DeviceStatus.Connected);
                     break;
                 case DeviceType.MotionDetector:
                     break;

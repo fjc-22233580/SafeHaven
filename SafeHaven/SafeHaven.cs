@@ -8,8 +8,21 @@ namespace SafeHaven
     /// </summary>
     public class Safehaven
     {
+        #region Fields
+        
+        /// <summary>
+        /// The model for the SafeHaven application.
+        /// </summary>
         private readonly SafeHavenModel model = new SafeHavenModel();
+
+        /// <summary>
+        /// The view controller for the SafeHaven application.
+        /// </summary>
         private readonly ViewController viewController;
+
+        #endregion
+
+        #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Safehaven"/> class.
@@ -18,5 +31,7 @@ namespace SafeHaven
         {
             viewController = new ViewController(model);            
         }
+
+        #endregion
     }
 }
