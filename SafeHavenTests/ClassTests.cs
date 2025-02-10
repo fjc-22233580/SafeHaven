@@ -1,9 +1,11 @@
-﻿using SafeHaven;
-using SafeHaven.Model.Devices;
+﻿using SafeHaven.Model.Devices;
 using SafeHaven.Model.Interfaces;
 
 namespace SafeHavenTests;
 
+/// <summary>
+/// Unit tests for the classes in the SafeHaven project.
+/// </summary>
 [TestClass]
 public sealed class ClassTests
 {
@@ -19,7 +21,7 @@ public sealed class ClassTests
         DeviceStatus expectedDeviceStatus = DeviceStatus.Connected;
 
         // Act
-        IDevice device = DeviceFactory.CreateDevice("Fire Detector", DeviceType.FireDetector, DeviceStatus.Connected);
+        IDevice device = DeviceFactory.CreateDevice("Fire Detector", DeviceType.FireDetector);
 
         DeviceType dexpectedDevice = device.DeviceType;
         string friendlyName = device.FriendlyName;
