@@ -21,6 +21,7 @@ public class ViewController
 
         SubscribeToDeviceEvents();
         CreateMainMenu();
+        DisplayMainMenu();
     }
 
     public List<MenuItem> MainMenu { get; private set; }
@@ -34,7 +35,10 @@ public class ViewController
             new MenuItem("3. Display Devices", DisplayDevices),
             new MenuItem("4. Exit", Exit)
         };
+    }
 
+    private void DisplayMainMenu()
+    {
         consoleUI.PrintMenu(MainMenu);
     }
 
@@ -50,7 +54,15 @@ public class ViewController
 
     private void DisplayDevices()
     {
-       // TODO: Implement this method
+        foreach (var device in model.Devices)
+        {
+            string deviceSummary = $"Device: {device.FriendlyName}, Type: {device.DeviceType}, Status: {device.DeviceStatus}";
+            consoleUI.DisplayMessage(deviceSummary);
+        }
+        
+        consoleUI.DisplayMessage("Press any key to return to the main menu.");
+        consoleUI.GetInput();
+        DisplayMainMenu();
     }
 
     private void Exit()
