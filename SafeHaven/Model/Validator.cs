@@ -30,17 +30,39 @@ public static class Validator
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public static bool ValidateDevice(string input)
+
+    using System.Linq;
+
+public static bool ValidateDevice(string input, List<IDevice> existingDevices)
+{
+    if (string.IsNullOrWhiteSpace(input))
     {
-        // Assume invalid device
-        bool isValid = false;
-
-        string[] deviceInfo = input.Split(',');
-        if (deviceInfo.Length == 2)
-        {
-            isValid = true;
-        }
-
-        return isValid;
+        return false;
     }
+
+    string[] deviceInfo = input.Split(',');
+
+    if (deviceInfo.Length != 2)
+    {
+        return false;
+    }
+
+    string friendlyName = deviceInfo[0].Trim();
+    string deviceTypeString = deviceInfo[1].Trim();
+
+    if (string.IsNullOrWhiteSpace(friendlyName) || string.IsNullOrWhiteSpace(deviceTypeString))
+    {
+        return false;
+    }
+
+    // Check if the device already exists
+    if (existingDevices.Any(d => d.FriendlyName.Equals(friendlyName, StringComparison.OrdinalIgnoreCase)))
+    {
+        return false;
+    }
+
+    // Validate device type
+    return Enum.TryParse<DeviceType>(deviceTypeString, true, out _);
+}
+
 }
