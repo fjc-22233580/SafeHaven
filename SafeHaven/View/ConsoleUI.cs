@@ -26,8 +26,7 @@ public class ConsoleUI
     /// <param name="menuItems"></param>
     public void PrintMenu(List<MenuItem> menuItems)
     {
-        DisplayTitle();
-
+        Clear();
         foreach (var menuItem in menuItems)
         {
             Console.WriteLine(menuItem.Text);
@@ -73,6 +72,15 @@ public class ConsoleUI
     {
         return Console.ReadLine();
     }
-    
+
+    /// <summary>
+    /// Clears the console screen, and displays the title.
+    /// </summary>
+    public void Clear()
+    {
+        Console.Clear();
+        DisplayTitle();
+    }
+
     #endregion
 }
