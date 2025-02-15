@@ -7,7 +7,7 @@ namespace SafeHaven.Model.Devices
     /// Represents a motion detector device.
     /// </summary>
     /// <seealso cref="IDevice" />
-    public sealed class MotionDectector: IDevice
+    public sealed class MotionDetector : IDevice
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MotionDetector"/> class.
@@ -16,7 +16,7 @@ namespace SafeHaven.Model.Devices
         /// <param name="friendlyName"></param>
         /// <param name="deviceType"></param>
         /// <param name="deviceStatus"></param>
-        public MotionDectector(Guid guid, string friendlyName, DeviceType deviceType, DeviceStatus deviceStatus)
+        public MotionDetector(Guid guid, string friendlyName, DeviceType deviceType, DeviceStatus deviceStatus)
         {
             Id = guid;
             FriendlyName = friendlyName;
@@ -24,7 +24,7 @@ namespace SafeHaven.Model.Devices
             DeviceStatus = deviceStatus;
         }
 
-         #region Properties
+        #region Properties
 
         /// <summary>
         /// Gets or sets a value indicating whether motion is detected.
@@ -36,14 +36,9 @@ namespace SafeHaven.Model.Devices
         /// </summary>
         public bool IsPersonPresent { get; set; }
 
-        /// <summary>
-        /// Gets a value indicating whether fire is detected.
-        /// </summary>
-        public bool IsMotionDetected => IsMotionDetected && IsPersonPresent > 50;
-
         #endregion
 
-         #region IDevice Members
+        #region IDevice Members
 
         /// <summary>
         /// Gets the unique identifier of the device.
