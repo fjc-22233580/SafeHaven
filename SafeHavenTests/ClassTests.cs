@@ -20,8 +20,13 @@ public sealed class ClassTests
         string expectedFriendlyName = "Fire Detector";
         DeviceStatus expectedDeviceStatus = DeviceStatus.Connected;
 
+        DeviceType expectedDevice = DeviceType.MotionDectector;
+        string expectedFriendlyName = "Motion Detector";
+        DeviceStatus expectedDeviceStatus = DeviceStatus.Connected;
+
         // Act
         IDevice device = DeviceFactory.CreateDevice("Fire Detector", DeviceType.FireDetector);
+        IDevice device = DeviceFactory.CreateDevice("Motion Detector", DeviceType.MotionDetector);
 
         DeviceType dexpectedDevice = device.DeviceType;
         string friendlyName = device.FriendlyName;
