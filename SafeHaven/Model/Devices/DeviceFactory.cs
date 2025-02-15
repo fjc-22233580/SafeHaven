@@ -25,6 +25,7 @@ namespace SafeHaven.Model.Devices
                     device = new FireDetector(Guid.NewGuid(), friendlyName, deviceType, DeviceStatus.Connected);
                     break;
                 case DeviceType.MotionDetector:
+                    device = new MotionDetector(Guid.NewGuid(), friendlyName, deviceType, DeviceStatus.Connected);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(deviceType), deviceType, null);
