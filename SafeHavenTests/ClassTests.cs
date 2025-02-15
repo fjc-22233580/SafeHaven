@@ -22,12 +22,12 @@ public sealed class ClassTests
 
         // Act
         IDevice device = DeviceFactory.CreateDevice("Fire Detector", DeviceType.FireDetector);
-        DeviceType dexpectedDevice = device.DeviceType;
+        DeviceType devicesType = device.DeviceType;
         string friendlyName = device.FriendlyName;
         DeviceStatus deviceStatus = device.DeviceStatus;
 
         // Assert
-        Assert.AreEqual(expectedDevice, expectedDevice);
+        Assert.AreEqual(expectedDevice, devicesType);
         Assert.AreEqual(expectedFriendlyName, friendlyName);
         Assert.AreEqual(expectedDeviceStatus, deviceStatus);
     }
