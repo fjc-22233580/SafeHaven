@@ -35,9 +35,7 @@ namespace SafeHaven.Model
         /// </summary>
         public SafeHavenModel()
         {
-            // Add some default devices
-            AddDevice("Kitchen Fire Detector", DeviceType.FireDetector);
-            AddDevice("Upstairs Fire Detector", DeviceType.FireDetector);
+            
         }
 
         #endregion
