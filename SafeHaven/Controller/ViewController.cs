@@ -86,7 +86,7 @@ public class ViewController
         string input = consoleUI.GetInput();
 
         // Validate the user input.
-        if (Validator.ValidateDevice(input))
+        if (Validator.ValidateDevice(input, model.Devices))
         {
             // Split the user input into the device name and type.
             string[] deviceInfo = input.Split(',');
@@ -102,7 +102,7 @@ public class ViewController
         else
         {
             // Display an error message to the user, and prompt them to try again.
-            consoleUI.DisplayMessage("Invalid input. Please try again, or press X to return to the main menu.");
+            consoleUI.DisplayMessage("Invalid input. Press enter to try again, or press X to return to the main menu.");
             string userChoice = consoleUI.GetInput();
             if (userChoice.ToLower() == "x")
             {

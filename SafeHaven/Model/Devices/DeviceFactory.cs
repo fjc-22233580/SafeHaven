@@ -16,10 +16,10 @@ namespace SafeHaven.Model.Devices
         /// <returns>An instance of a device that implements the <see cref="IDevice"/> interface.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the device type is not recognized.</exception>
         public static IDevice CreateDevice(string friendlyName, DeviceType deviceType)
-        {                    
-           IDevice device = null;
+        {
+            IDevice device = null;
 
-           switch (deviceType)
+            switch (deviceType)
             {
                 case DeviceType.FireDetector:
                     device = new FireDetector(Guid.NewGuid(), friendlyName, deviceType, DeviceStatus.Connected);
