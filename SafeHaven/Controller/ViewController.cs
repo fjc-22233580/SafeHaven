@@ -79,6 +79,7 @@ public class ViewController
     /// </summary>
     private void AddDevice()
     {
+        consoleUI.Clear();
         // Display a message to the user to enter the name of the device and the type.
         consoleUI.DisplayMessage("Enter the name of the device, the type, seperated by a comma.");
 
@@ -128,6 +129,7 @@ public class ViewController
     /// </summary>
     private void DisplayDevices()
     {
+        consoleUI.Clear();
         foreach (var device in model.Devices)
         {
             string deviceSummary = $"Device: {device.FriendlyName}, Type: {device.DeviceType}, Status: {device.DeviceStatus}";
