@@ -27,15 +27,14 @@ public class ViewController
     #endregion
 
     #region Constructor
+    
     /// <summary>
     /// Initializes a new instance of the <see cref="ViewController"/> class.
     /// </summary>
     /// <param name="model"></param>
-    public ViewController(SafeHavenModel model)
+    public ViewController()
     {
-        this.model = model;
-
-        SubscribeToDeviceEvents();
+        model = new SafeHavenModel();
         CreateMainMenu();
         DisplayMainMenu();
     }
@@ -148,33 +147,5 @@ public class ViewController
     {
         Environment.Exit(0);
     }
-
-    /// <summary>
-    /// Subscribes to the device events.
-    /// </summary>
-    private void SubscribeToDeviceEvents()
-    {
-        foreach (var device in model.Devices)
-        {
-            device.DeviceStateChanged += Device_DeviceStateChanged;
-        }
-    }
-    #endregion
-
-    #region Event Handlers
-
-    /// <summary>
-    /// Handles the DeviceStateChanged event.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void Device_DeviceStateChanged(object? sender, EventArgs e)
-    {
-        // TODO: Implement this method
-    }
-
     #endregion
 }
-
-
-// Saharsh was here

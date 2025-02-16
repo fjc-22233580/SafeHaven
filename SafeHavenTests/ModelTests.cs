@@ -9,7 +9,7 @@ namespace SafeHavenTests;
 public class ModelTests
 {
 
-/// <summary>
+    /// <summary>
     /// Tests the menu creation.
     /// </summary>
     [TestMethod]
@@ -27,20 +27,48 @@ public class ModelTests
         Assert.AreEqual(expectedAction, menuItem.Action, "The menu item action was not set correctly.");
     }
 
+    /// <summary>
+    /// Tests the model creation and adding devices.
+    /// </summary>
     [TestMethod]
     public void TestModel()
     {
         // Arrange
-        IDevice device = new FireDetector(Guid.NewGuid(), "Fire Detector", DeviceType.FireDetector, DeviceStatus.Connected);
+        IDevice device = new FireDetector(Guid.NewGuid(), "Fire Detector", DeviceType.FireDetector);
 
         // Act
         SafeHavenModel model = new SafeHavenModel();
-        List<IDevice> devices = model.Devices;
         model.AddDevice("Fire Detector", DeviceType.FireDetector);
+        bool deviceAdded = model.Devices.FirstOrDefault(d => d.FriendlyName == "Fire Detector") != null;
 
         // Assert
-        Assert.IsNotNull(devices, "The devices list was not created.");
-        Assert.AreEqual(1, devices.Count, "The device was not added to the list.");
-        Assert.AreEqual(device.FriendlyName, devices[0].FriendlyName, "A different device was added to the list.");
-    }   
+        Assert.IsNotNull(model.Devices, "The devices list was not created.");
+        Assert.IsTrue(deviceAdded, "The device was not added to the list.");
+    }
+
+    /// <summary>
+    /// Tests the device manager.
+    /// </summary>
+    [TestMethod]
+    public void TestDeviceManager()
+    {
+        // Arrange
+        FireDetector device = new FireDetector(Guid.NewGuid(), "Fire Detector", DeviceType.FireDetector)
+        {
+            IsSmokeDetected = true,
+            Temperature = 100
+        };
+        DeviceManager deviceManager = new DeviceManager();
+
+        // Act
+        deviceManager.AddDevice(device);
+        bool deviceAdded = deviceManager.Devices.FirstOrDefault(d => d.FriendlyName == "Fire Detector") != null;
+        deviceManager.CheckDevices();
+        bool isFireAlarmTriggered = deviceManager.CanSoundFireAlarm;
+
+        // Assert
+        Assert.IsNotNull(deviceManager.Devices, "The devices list was not created.");
+        Assert.IsTrue(deviceAdded, "The device was not added to the list.");
+        Assert.IsTrue(isFireAlarmTriggered, "The fire alarm was not triggered.");
+    }
 }

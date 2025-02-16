@@ -9,11 +9,6 @@ namespace SafeHaven.Model.Interfaces
     public interface IDevice
     {
         /// <summary>
-        /// Occurs when the device is triggered.
-        /// </summary>
-        event EventHandler DeviceStateChanged ;
-
-        /// <summary>
         /// Gets the unique identifier of the device.
         /// </summary>
         Guid Id { get; }

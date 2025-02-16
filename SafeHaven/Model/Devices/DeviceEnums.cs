@@ -7,7 +7,8 @@ namespace SafeHaven.Model.Devices
     {
         Unkown,
         FireDetector,
-        MotionDetector
+        MotionDetector,
+        WindowDoorSensor
     }
 
     /// <summary> 
@@ -17,6 +18,8 @@ namespace SafeHaven.Model.Devices
         Unknown,
         Disconnected,
         Connected,
-        Error
+        Error,
+        Standby,
+        Triggered
     }
 }
