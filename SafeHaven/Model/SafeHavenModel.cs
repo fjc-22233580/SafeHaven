@@ -10,55 +10,49 @@ namespace SafeHaven.Model
     /// </summary>
     public class SafeHavenModel
     {
-        #region Events
-
-        /// <summary>
-        ///  Occurs when the devices in the model have changed.
-        /// </summary>
-        public event EventHandler DevicesChanged;
-
-        #endregion
 
         #region Fields
 
         /// <summary>
-        /// The list of devices in the model.
+        /// The device manager.
         /// </summary>
-        private List<IDevice> _devices = new List<IDevice>();
-
-        private DeviceManager _deviceManager;  
+        private DeviceManager _deviceManager;
 
         #endregion
 
         #region Constructor
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SafeHavenModel"/> class.
         /// </summary>
         public SafeHavenModel()
         {
+            _deviceManager = new DeviceManager();
             CreateTestDevices();
-            _deviceManager = new DeviceManager(_devices);
         }
 
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the devices in the model.
+        /// </summary>
+        public List<IDevice> Devices => _deviceManager.Devices;
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Create dummy devices for testing.
+        /// </summary>
         private void CreateTestDevices()
         {
             AddDevice("Motion Detector", DeviceType.MotionDetector);
             AddDevice("Fire Detector", DeviceType.FireDetector);
             AddDevice("Front Door Sensor", DeviceType.WindowDoorSensor);
         }
-
-        #endregion
-
-        #region Properties
-        /// <summary>
-        /// Gets the devices in the model.
-        /// </summary>
-        public List<IDevice> Devices => _devices;
-
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Adds a device to the model.
@@ -68,7 +62,7 @@ namespace SafeHaven.Model
         public void AddDevice(string friendlyName, DeviceType deviceType)
         {
             IDevice device = DeviceFactory.CreateDevice(friendlyName, deviceType);
-            _devices.Add(device);
+            _deviceManager.AddDevice(device);
         }
 
         #endregion

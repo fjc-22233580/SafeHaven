@@ -16,12 +16,11 @@ namespace SafeHaven.Model.Devices
         /// <param name="friendlyName"></param>
         /// <param name="deviceType"></param>
         /// <param name="deviceStatus"></param>
-        public FireDetector(Guid guid, string friendlyName, DeviceType deviceType, DeviceStatus deviceStatus)
+        public FireDetector(Guid guid, string friendlyName, DeviceType deviceType)
         {
             Id = guid;
             FriendlyName = friendlyName;
             DeviceType = deviceType;
-            DeviceStatus = deviceStatus;
         }
 
         #region Properties
@@ -35,11 +34,6 @@ namespace SafeHaven.Model.Devices
         /// Gets or sets the temperature.
         /// </summary>
         public int Temperature { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether fire is detected.
-        /// </summary>
-        public bool IsFireDetected => IsSmokeDetected && Temperature > 50;
 
         #endregion
 
@@ -63,12 +57,20 @@ namespace SafeHaven.Model.Devices
         /// <summary>
         /// Gets the status of the device.
         /// </summary>
-        public DeviceStatus DeviceStatus { get; }
-
-        /// <summary>
-        /// Occurs when the device is triggered.
-        /// </summary>
-        public event EventHandler DeviceStateChanged;
+        public DeviceStatus DeviceStatus
+        {
+            get
+            {
+                if (IsSmokeDetected && Temperature > 50)
+                {
+                    return DeviceStatus.Triggered;
+                }
+                else
+                {
+                    return DeviceStatus.Standby;
+                }
+            }
+        }
 
         #endregion
     }

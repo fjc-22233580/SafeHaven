@@ -18,6 +18,8 @@ namespace SafeHaven.Model.Devices
         Unknown,
         Disconnected,
         Connected,
-        Error
+        Error,
+        Standby,
+        Triggered
     }
 }

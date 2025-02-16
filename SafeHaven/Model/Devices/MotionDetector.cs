@@ -16,12 +16,11 @@ namespace SafeHaven.Model.Devices
         /// <param name="friendlyName"></param>
         /// <param name="deviceType"></param>
         /// <param name="deviceStatus"></param>
-        public MotionDetector(Guid guid, string friendlyName, DeviceType deviceType, DeviceStatus deviceStatus)
+        public MotionDetector(Guid guid, string friendlyName, DeviceType deviceType)
         {
             Id = guid;
             FriendlyName = friendlyName;
             DeviceType = deviceType;
-            DeviceStatus = deviceStatus;
         }
 
         #region Properties
@@ -30,11 +29,6 @@ namespace SafeHaven.Model.Devices
         /// Gets or sets a value indicating whether motion is detected.
         /// </summary>
         public bool IsMotionDetected { get; set; }
-
-        /// <summary>   
-        /// Detects speed .
-        /// </summary>
-        public bool IsPersonPresent { get; set; }
 
         #endregion
 
@@ -58,12 +52,20 @@ namespace SafeHaven.Model.Devices
         /// <summary>
         /// Gets the status of the device.
         /// </summary>
-        public DeviceStatus DeviceStatus { get; }
-
-        /// <summary>
-        /// Occurs when the device is triggered.
-        /// </summary>
-        public event EventHandler DeviceStateChanged;
+        public DeviceStatus DeviceStatus
+        {
+            get
+            {
+                if (IsMotionDetected)
+                {
+                    return DeviceStatus.Triggered;
+                }
+                else
+                {
+                    return DeviceStatus.Standby;
+                }
+            }
+        }
 
         #endregion
     }

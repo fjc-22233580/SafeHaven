@@ -15,12 +15,11 @@ public class WindowDoorSensor : IDevice
     /// <param name="friendlyName"></param>
     /// <param name="deviceType"></param>
     /// <param name="deviceStatus"></param>
-    public WindowDoorSensor(Guid guid, string friendlyName, DeviceType deviceType, DeviceStatus deviceStatus)
+    public WindowDoorSensor(Guid guid, string friendlyName, DeviceType deviceType)
     {
         Id = guid;
         FriendlyName = friendlyName;
         DeviceType = deviceType;
-        DeviceStatus = deviceStatus;
     }
 
 
@@ -53,12 +52,20 @@ public class WindowDoorSensor : IDevice
     /// <summary>
     /// Gets the status of the device.
     /// </summary>
-    public DeviceStatus DeviceStatus { get; }
-
-    /// <summary>
-    /// Occurs when the device is triggered.
-    /// </summary>
-    public event EventHandler DeviceStateChanged;
+    public DeviceStatus DeviceStatus
+    {
+        get
+        {
+            if (IsOpen)
+            {
+                return DeviceStatus.Triggered;
+            }
+            else
+            {
+                return DeviceStatus.Standby;
+            }
+        }
+    }
 
     #endregion
 }

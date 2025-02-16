@@ -22,10 +22,13 @@ namespace SafeHaven.Model.Devices
             switch (deviceType)
             {
                 case DeviceType.FireDetector:
-                    device = new FireDetector(Guid.NewGuid(), friendlyName, deviceType, DeviceStatus.Connected);
+                    device = new FireDetector(Guid.NewGuid(), friendlyName, deviceType);
                     break;
                 case DeviceType.MotionDetector:
-                    device = new MotionDetector(Guid.NewGuid(), friendlyName, deviceType, DeviceStatus.Connected);
+                    device = new MotionDetector(Guid.NewGuid(), friendlyName, deviceType);
+                    break;
+                case DeviceType.WindowDoorSensor:
+                    device = new WindowDoorSensor(Guid.NewGuid(), friendlyName, deviceType);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(deviceType), deviceType, null);
