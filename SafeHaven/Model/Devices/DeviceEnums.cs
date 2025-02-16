@@ -7,7 +7,8 @@ namespace SafeHaven.Model.Devices
     {
         Unkown,
         FireDetector,
-        MotionDetector
+        MotionDetector,
+        WindowDoorSensor
     }
 
     /// <summary> 

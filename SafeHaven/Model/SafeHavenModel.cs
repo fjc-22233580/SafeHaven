@@ -26,6 +26,8 @@ namespace SafeHaven.Model
         /// </summary>
         private List<IDevice> _devices = new List<IDevice>();
 
+        private DeviceManager _deviceManager;  
+
         #endregion
 
         #region Constructor
@@ -35,7 +37,15 @@ namespace SafeHaven.Model
         /// </summary>
         public SafeHavenModel()
         {
-            
+            CreateTestDevices();
+            _deviceManager = new DeviceManager(_devices);
+        }
+
+        private void CreateTestDevices()
+        {
+            AddDevice("Motion Detector", DeviceType.MotionDetector);
+            AddDevice("Fire Detector", DeviceType.FireDetector);
+            AddDevice("Front Door Sensor", DeviceType.WindowDoorSensor);
         }
 
         #endregion
