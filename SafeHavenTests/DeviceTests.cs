@@ -1,6 +1,8 @@
-﻿using SafeHaven.Model.Devices;
+﻿using SafeHaven.Model;
+using SafeHaven.Model.Devices;
 using SafeHaven.Model.Interfaces;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 namespace SafeHavenTests;
 
 /// <summary>
@@ -120,4 +122,81 @@ public class DeviceTests
         // Assert
         Assert.IsTrue(isFireDetected, "The fire detector did not detect the fire.");
     }
+
+namespace SafeHavenTests
+{
+    /// <summary>
+    /// Unit tests for the Validator class.
+    /// </summary>
+    [TestClass]
+    public sealed class ValidatorTests
+    {
+        private List<IDevice> existingDevices;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            // Create a sample list of existing devices
+            existingDevices = new List<IDevice>
+            {
+                new FireDetector(System.Guid.NewGuid(), "Kitchen Fire Detector", DeviceType.FireDetector, DeviceStatus.Connected)
+            };
+        }
+
+        /// <summary>
+        /// Tests if ValidateDevice accepts a valid input.
+        /// </summary>
+        [TestMethod]
+        public void validateValidDevice()
+        {
+            bool result = Validator.ValidateDevice("Living Room Detector,FireDetector", existingDevices);
+            Assert.IsTrue(result, "Expected valid input to return true.");
+        }
+
+        /// <summary>
+        /// Tests if ValidateDevice rejects input with missing values.
+        /// </summary>
+        [TestMethod]
+        public void rejectsMissingValues()
+        {
+            bool result1 = Validator.ValidateDevice("Living Room Detector,", existingDevices);
+            bool result2 = Validator.ValidateDevice(",FireDetector", existingDevices);
+            bool result3 = Validator.ValidateDevice(" ", existingDevices);
+
+            Assert.IsFalse(result1, "Expected input missing device type to return false.");
+            Assert.IsFalse(result2, "Expected input missing device name to return false.");
+            Assert.IsFalse(result3, "Expected empty input to return false.");
+        }
+
+        /// <summary>
+        /// Tests if ValidateDevice rejects input with too many values.
+        /// </summary>
+        [TestMethod]
+        public void rejectsExtraValues()
+        {
+            bool result = Validator.ValidateDevice("Living Room Detector,FireDetector,Extra", existingDevices);
+            Assert.IsFalse(result, "Expected input with extra values to return false.");
+        }
+
+        /// <summary>
+        /// Tests if ValidateDevice rejects an invalid device type.
+        /// </summary>
+        [TestMethod]
+        public void rejectsInvalidDeviceType()
+        {
+            bool result = Validator.ValidateDevice("Living Room Detector,InvalidType", existingDevices);
+            Assert.IsFalse(result, "Expected input with an invalid device type to return false.");
+        }
+
+        /// <summary>
+        /// Tests if ValidateDevice rejects duplicate device names.
+        /// </summary>
+        [TestMethod]
+        public void rejectsDuplicateDevice()
+        {
+            bool result = Validator.ValidateDevice("Kitchen Fire Detector,FireDetector", existingDevices);
+            Assert.IsFalse(result, "Expected duplicate device name to return false.");
+        }
+    }
+}
 }
