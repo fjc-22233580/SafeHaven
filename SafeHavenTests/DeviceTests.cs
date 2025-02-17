@@ -1,6 +1,8 @@
-﻿using SafeHaven.Model.Devices;
+﻿using SafeHaven.Model;
+using SafeHaven.Model.Devices;
 using SafeHaven.Model.Interfaces;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 namespace SafeHavenTests;
 
 /// <summary>
