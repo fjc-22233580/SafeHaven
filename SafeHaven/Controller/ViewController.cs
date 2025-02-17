@@ -11,7 +11,6 @@ namespace SafeHaven.Controller;
 /// </summary>
 public class ViewController
 {
-
     #region Fields
 
     /// <summary>
@@ -27,7 +26,7 @@ public class ViewController
     #endregion
 
     #region Constructor
-    
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ViewController"/> class.
     /// </summary>
@@ -95,9 +94,7 @@ public class ViewController
             model.AddDevice(friendlyName, deviceType);
 
             consoleUI.DisplayMessage("Device added successfully.");
-            consoleUI.DisplayMessage("Press any key to return to the main menu.");
-            consoleUI.GetInput();
-            DisplayMainMenu();
+            ReturnToMainMenu();
         }
         else
         {
@@ -120,7 +117,37 @@ public class ViewController
     /// </summary>
     private void RemoveDevice()
     {
-        // TODO:   Implement this method
+        // Show options
+        consoleUI.Clear();
+        PrintDevices();
+        consoleUI.DisplayMessage("Enter the number of the device you would like to remove.");
+
+        // Get the user input from the console.
+        string input = consoleUI.GetInput();
+        int deviceNumber = Validator.ValidateMenuChoice(input, model.Devices.Count);
+        if (deviceNumber != -1)
+        {
+            // Ask user to confirm removal
+            consoleUI.DisplayMessage("Are you sure you wish to remove this device? (Y/N)");
+            string userChoice = consoleUI.GetInput();
+            if (userChoice.ToLower() == "y")
+            {
+                model.Devices.RemoveAt(deviceNumber - 1);
+                consoleUI.DisplayMessage("Device removed successfully.");
+                ReturnToMainMenu();
+            }
+            else
+            {
+                consoleUI.DisplayMessage("Device not removed.");
+                ReturnToMainMenu();
+            }
+
+        }
+        else
+        {
+            consoleUI.DisplayMessage("Invalid input.");
+            ReturnToMainMenu();
+        }
     }
 
     /// <summary>   
@@ -129,15 +156,32 @@ public class ViewController
     private void DisplayDevices()
     {
         consoleUI.Clear();
-        foreach (var device in model.Devices)
-        {
-            string deviceSummary = $"Device: {device.FriendlyName}, Type: {device.DeviceType}, Status: {device.DeviceStatus}";
-            consoleUI.DisplayMessage(deviceSummary);
-        }
+        PrintDevices();
+        ReturnToMainMenu();
+    }
 
+    /// <summary>
+    /// Returns the user to the main menu.
+    /// </summary>
+    private void ReturnToMainMenu()
+    {
         consoleUI.DisplayMessage("Press any key to return to the main menu.");
         consoleUI.GetInput();
         DisplayMainMenu();
+    }
+
+    /// <summary>
+    /// Prints the devices in the SafeHaven application.
+    /// </summary>
+    private void PrintDevices()
+    {
+        int ordinal = 1;
+        foreach (var device in model.Devices)
+        {
+            string deviceSummary = $"{ordinal}: Device: {device.FriendlyName}, Type: {device.DeviceType}, Status: {device.DeviceStatus}";
+            consoleUI.DisplayMessage(deviceSummary);
+            ordinal++;
+        }
     }
 
     /// <summary>

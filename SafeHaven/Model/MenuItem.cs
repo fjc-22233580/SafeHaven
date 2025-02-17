@@ -7,7 +7,6 @@ namespace SafeHaven.Model;
 /// </summary>
 public class MenuItem
 {
-
     #region Constructor
 
     /// <summary>

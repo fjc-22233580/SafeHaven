@@ -56,6 +56,7 @@ namespace SafeHaven.Model.Devices
         {
             get
             {
+                // If motion is detected, then the device is triggered
                 if (IsMotionDetected)
                 {
                     return DeviceStatus.Triggered;

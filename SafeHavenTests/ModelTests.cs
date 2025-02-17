@@ -1,4 +1,3 @@
-using System;
 using SafeHaven.Model;
 using SafeHaven.Model.Devices;
 using SafeHaven.Model.Interfaces;

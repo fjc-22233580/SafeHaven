@@ -61,6 +61,7 @@ namespace SafeHaven.Model.Devices
         {
             get
             {
+                // If smoke is detected and the temperature is greater than 50, then the device is triggered
                 if (IsSmokeDetected && Temperature > 50)
                 {
                     return DeviceStatus.Triggered;
