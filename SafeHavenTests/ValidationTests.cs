@@ -11,6 +11,24 @@ namespace SafeHavenTests;
 public class ValidationTests
 {
     /// <summary>
+    /// The list of existing devices.
+    /// </summary>
+    private List<IDevice> existingDevices;
+
+    /// <summary>
+    /// Setup the test.
+    /// </summary>
+    [TestInitialize]
+    public void Setup()
+    {
+        // Create a sample list of existing devices
+        existingDevices = new List<IDevice>
+        {
+            new FireDetector(Guid.NewGuid(), "Kitchen Fire Detector", DeviceType.FireDetector)
+        };
+    }
+
+    /// <summary>
     /// Test the menu choice validation.
     /// </summary>
     [TestMethod]
@@ -33,24 +51,13 @@ public class ValidationTests
         Assert.AreEqual(-1, invalidNumericalOutput, "The menu choice validation failed.");
         Assert.AreEqual(-1, invalidNonNumericalOutput, "The menu choice validation failed.");
     }
-
-    private List<IDevice> existingDevices;
-
-    [TestInitialize]
-    public void Setup()
-    {
-        // Create a sample list of existing devices
-        existingDevices = new List<IDevice>
-            {
-                new FireDetector(System.Guid.NewGuid(), "Kitchen Fire Detector", DeviceType.FireDetector)
-            };
-    }
+    
 
     /// <summary>
     /// Tests if ValidateDevice accepts a valid input.
     /// </summary>
     [TestMethod]
-    public void ValidateValidDevice()
+    public void TestDeviceValidation()
     {
         bool result = Validator.ValidateDevice("Living Room Detector,FireDetector", existingDevices);
         Assert.IsTrue(result, "Expected valid input to return true.");
