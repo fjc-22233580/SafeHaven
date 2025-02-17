@@ -17,6 +17,7 @@ namespace SafeHaven.Model.Devices
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the device type is not recognized.</exception>
         public static IDevice CreateDevice(string friendlyName, DeviceType deviceType)
         {
+            // Default to null
             IDevice device = null;
 
             switch (deviceType)

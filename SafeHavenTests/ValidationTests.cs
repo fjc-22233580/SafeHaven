@@ -1,8 +1,5 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SafeHaven.Model.Devices;
 using SafeHaven.Model.Interfaces;
-using System.Collections.Generic;
-using System;
 using SafeHaven.Model;
 
 namespace SafeHavenTests;
@@ -45,7 +42,7 @@ public class ValidationTests
         // Create a sample list of existing devices
         existingDevices = new List<IDevice>
             {
-                new FireDetector(System.Guid.NewGuid(), "Kitchen Fire Detector", DeviceType.FireDetector, DeviceStatus.Connected)
+                new FireDetector(System.Guid.NewGuid(), "Kitchen Fire Detector", DeviceType.FireDetector)
             };
     }
 
@@ -103,3 +100,4 @@ public class ValidationTests
         bool result = Validator.ValidateDevice("Kitchen Fire Detector,FireDetector", existingDevices);
         Assert.IsFalse(result, "Expected duplicate device name to return false.");
     }
+}

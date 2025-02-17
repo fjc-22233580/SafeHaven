@@ -56,6 +56,7 @@ public class WindowDoorSensor : IDevice
     {
         get
         {
+            // If the window or door is open, then the device is triggered
             if (IsOpen)
             {
                 return DeviceStatus.Triggered;

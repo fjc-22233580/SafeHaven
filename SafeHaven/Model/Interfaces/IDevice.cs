@@ -4,7 +4,7 @@ using SafeHaven.Model.Devices;
 namespace SafeHaven.Model.Interfaces
 {
     /// <summary>
-    /// Represents a device.
+    /// Represents the core properties of a device.
     /// </summary>
     public interface IDevice
     {

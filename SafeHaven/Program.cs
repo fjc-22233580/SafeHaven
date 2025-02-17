@@ -1,6 +1,4 @@
-﻿using System;
-using SafeHaven.Controller;
-using SafeHaven.Model;
+﻿using SafeHaven.Controller;
 
 namespace SafeHaven
 {
@@ -15,6 +13,7 @@ namespace SafeHaven
         /// <param name="args">An array of command-line arguments.</param>
         static void Main(string[] args)
         {
+            // Create a new instance of the view controller, which in turns creates the model and view.
             ViewController viewController = new ViewController();
         }
     }
