@@ -57,54 +57,49 @@ public class ValidationTests
     /// Tests if ValidateDevice accepts a valid input.
     /// </summary>
     [TestMethod]
-    public void TestDeviceValidation()
+    public void TestValidDeviceValidation()
     {
-        bool result = Validator.ValidateDevice("Living Room Detector,FireDetector", existingDevices);
-        Assert.IsTrue(result, "Expected valid input to return true.");
+        // Arrange
+        string validFireDetector = "Living Room Detector,FireDetector";
+        string validMotionDetector = "BedRoom Detector,MotionDetector";
+
+        // Act
+        bool isValidFireDetector = Validator.ValidateDevice(validFireDetector, existingDevices);
+        bool isValidMotionDetector = Validator.ValidateDevice(validMotionDetector, existingDevices);
+
+        // Assert
+        Assert.IsTrue(isValidFireDetector, "Expected valid input to return true.");
+        Assert.IsTrue(isValidMotionDetector, "Expected valid input to return true.");
     }
 
     /// <summary>
     /// Tests if ValidateDevice rejects input with missing values.
     /// </summary>
     [TestMethod]
-    public void RejectsMissingValues()
+    public void TestInvalidDeviceValidation()
     {
-        bool result1 = Validator.ValidateDevice("Living Room Detector,", existingDevices);
-        bool result2 = Validator.ValidateDevice(",FireDetector", existingDevices);
-        bool result3 = Validator.ValidateDevice(" ", existingDevices);
+        // Arrange
+        string missingDeviceType = "Living Room Detector,";
+        string missingDeviceName = ",FireDetector";
+        string emptyInput = " ";
+        string extraValues = "Living Room Detector,FireDetector,Extra";
+        string invalidDeviceType = "Living Room Detector,InvalidType";
+        string duplicateDevice = "Kitchen Fire Detector,FireDetector";
 
-        Assert.IsFalse(result1, "Expected input missing device type to return false.");
-        Assert.IsFalse(result2, "Expected input missing device name to return false.");
-        Assert.IsFalse(result3, "Expected empty input to return false.");
-    }
+        // Act
+        bool deviceIsMissing = Validator.ValidateDevice(missingDeviceType, existingDevices);
+        bool nameIsMissing = Validator.ValidateDevice(missingDeviceName, existingDevices);
+        bool inputIsEmpty = Validator.ValidateDevice(emptyInput, existingDevices);
+        bool tooManyValues = Validator.ValidateDevice(extraValues, existingDevices);
+        bool invalidType = Validator.ValidateDevice(invalidDeviceType, existingDevices);
+        bool isDuplicate = Validator.ValidateDevice(duplicateDevice, existingDevices);
 
-    /// <summary>
-    /// Tests if ValidateDevice rejects input with too many values.
-    /// </summary>
-    [TestMethod]
-    public void RejectsExtraValues()
-    {
-        bool result = Validator.ValidateDevice("Living Room Detector,FireDetector,Extra", existingDevices);
-        Assert.IsFalse(result, "Expected input with extra values to return false.");
-    }
-
-    /// <summary>
-    /// Tests if ValidateDevice rejects an invalid device type.
-    /// </summary>
-    [TestMethod]
-    public void RejectsInvalidDeviceType()
-    {
-        bool result = Validator.ValidateDevice("Living Room Detector,InvalidType", existingDevices);
-        Assert.IsFalse(result, "Expected input with an invalid device type to return false.");
-    }
-
-    /// <summary>
-    /// Tests if ValidateDevice rejects duplicate device names.
-    /// </summary>
-    [TestMethod]
-    public void RejectsDuplicateDevice()
-    {
-        bool result = Validator.ValidateDevice("Kitchen Fire Detector,FireDetector", existingDevices);
-        Assert.IsFalse(result, "Expected duplicate device name to return false.");
+        // Assert
+        Assert.IsFalse(deviceIsMissing, "Expected input missing device type to return false.");
+        Assert.IsFalse(nameIsMissing, "Expected input missing device name to return false.");
+        Assert.IsFalse(inputIsEmpty, "Expected empty input to return false.");
+        Assert.IsFalse(tooManyValues, "Expected input with extra values to return false.");
+        Assert.IsFalse(invalidType, "Expected input with an invalid device type to return false.");
+        Assert.IsFalse(isDuplicate, "Expected input with a duplicate device to return false.");
     }
 }
