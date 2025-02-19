@@ -73,7 +73,7 @@ public class ValidationTests
     }
 
     /// <summary>
-    /// Tests if ValidateDevice rejects input with missing values.
+    /// Tests if ValidateDevice rejects input with incorrect values.
     /// </summary>
     [TestMethod]
     public void TestInvalidDeviceValidation()
