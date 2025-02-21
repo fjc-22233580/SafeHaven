@@ -11,7 +11,7 @@ namespace SafeHaven.Model.Devices
         WindowDoorSensor
     }
 
-    /// <summary> 
+    /// <summary>
     ///  Enum for the status of the device
     /// </summary>
     public enum DeviceStatus{
