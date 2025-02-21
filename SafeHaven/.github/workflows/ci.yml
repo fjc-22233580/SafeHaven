@@ -1,0 +1,12 @@
+name: CI Pipeline
+
+#Triggers the workflow when code is pushed to main branch
+#or a pull request is made on main
+on:
+  push: 
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
