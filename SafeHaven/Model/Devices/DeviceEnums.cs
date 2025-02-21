@@ -14,7 +14,8 @@ namespace SafeHaven.Model.Devices
     /// <summary>
     ///  Enum for the status of the device
     /// </summary>
-    public enum DeviceStatus{
+    public enum DeviceStatus
+    {
         Unknown,
         Disconnected,
         Connected,

@@ -25,5 +25,6 @@ namespace SafeHaven.Model.Interfaces
         /// <summary>
         /// Gets the status of the device.
         /// </summary>
-        DeviceStatus DeviceStatus { get; }}
+        DeviceStatus DeviceStatus { get; }
+    }
 }
