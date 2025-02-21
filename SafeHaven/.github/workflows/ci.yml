@@ -3,7 +3,7 @@ name: .NET CI Pipeline
 #Triggers the workflow when code is pushed to main branch
 #or a pull request is made on main
 on:
-  push: 
+  push:
     branches:
       - main
   pull_request:
@@ -18,7 +18,7 @@ jobs:
 #Specifies steps to execute before deploying
 #Retrieve the latest code
     steps:
-      - name: Checkout repository 
+      - name: Checkout repository
         uses: actions/checkout@v3
 #Install a specific .NET SDK
       - name: Setup .NET Core SDK
@@ -44,6 +44,21 @@ jobs:
         with:
           name: TestResults
           path: "**/SafeHaven/SafeHavenTests/test_results.trx"
+
+#Separate job for deployment. Will only run if build and test complete successfully.
+  deploy:
+    needs: build_and_test
+    runs-on: windows-latest
+    steps:
+      - name: Deploy
+        run: echo "Deployment process here..."
+        
+      
+
+
+
+
+
 
 
 
