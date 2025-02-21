@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: .NET CI Pipeline
 
 #Triggers the workflow when code is pushed to main branch
 #or a pull request is made on main
@@ -10,36 +10,42 @@ on:
     branches:
       - main
 
-#Setting the environment to run the job
+#Setting the environment to run the job - this one automates all the tasks and
+#checks needed for a deployment
 jobs:
-  build-and-test::
+  build_and_test:
     runs-on: windows-latest
 #Specifies steps to execute before deploying
 #Retrieve the latest code
     steps:
       - name: Checkout repository 
         uses: actions/checkout@v3
-#change to lang
-#Install a specific language version
-      - name: Setup Python
-        uses: actions/setup-python@v4
+#Install a specific .NET SDK
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3
         with:
-          python-version '3.9'
-#Install required dependencies, should be listed in requirements.txt
-      - name: Install Dependendices
-        run:
-          pip install - r requirements.txt
+          dotnet-version: '7.0.x'
+#Restoring required dependencies, should be listed in requirements.txt
+      - name: Restore Dependendices
+        run: dotnet restore
+#Check code quality (linting) in dotnet format
+      - name: Lint Code
+        run: dotnet format --verify-no-changes
+#Build process
+      - name: Build Project
+        run: dotnet build --no-restore --configuration Release
 #Execute unit tests
       - name: Run Tests
-        run: pytest tests/
-#Check code quality using a linter on source folder
-      - name: Lint Code
-        run:
-          pylint src/
-#Simulate build process
-      - name: Build Project
-        run:
-          echo "Building project..."
+        run: dotnet test --no-build --configuration Release --logger "trx;LogFileName=test_results.trx"
+#Saving test results for future analysis
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: TestResults
+          path: "**/SafeHaven/SafeHavenTests/test_results.trx"
+
+
 
 
 
