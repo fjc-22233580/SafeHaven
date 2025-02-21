@@ -52,7 +52,6 @@ public class ValidationTests
         Assert.AreEqual(-1, invalidNonNumericalOutput, "The menu choice validation failed.");
     }
 
-
     /// <summary>
     /// Tests if ValidateDevice accepts a valid input.
     /// </summary>
