@@ -10,3 +10,36 @@ on:
     branches:
       - main
 
+#Setting the environment to run the job
+jobs:
+  build-and-test::
+    runs-on: windows-latest
+#Specifies steps to execute before deploying
+#Retrieve the latest code
+    steps:
+      - name: Checkout repository 
+        uses: actions/checkout@v3
+#change to lang
+#Install a specific language version
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version '3.9'
+#Install required dependencies, should be listed in requirements.txt
+      - name: Install Dependendices
+        run:
+          pip install - r requirements.txt
+#Execute unit tests
+      - name: Run Tests
+        run: pytest tests/
+#Check code quality using a linter on source folder
+      - name: Lint Code
+        run:
+          pylint src/
+#Simulate build process
+      - name: Build Project
+        run:
+          echo "Building project..."
+
+
+
