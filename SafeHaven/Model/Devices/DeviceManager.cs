@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
 using SafeHaven.Model.Interfaces;
 
 namespace SafeHaven.Model.Devices
 {
-
-
-
     /// <summary>
     /// The device manager class that manages all devices.
     /// </summary>

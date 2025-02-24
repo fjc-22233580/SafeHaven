@@ -22,7 +22,6 @@ namespace SafeHaven.Model.Interfaces
         /// Gets the type of the device.
         /// </summary>
         DeviceType DeviceType { get; }
-        
         /// <summary>
         /// Gets the status of the device.
         /// </summary>
